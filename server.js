@@ -17,8 +17,8 @@ var port = process.env.PORT || "3000";
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 app.use(less(path.join(__dirname, PUBLIC_FOLDER)));
+app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 app.use(morgan("combined"));
 
 app.get("/", function(req, res){
