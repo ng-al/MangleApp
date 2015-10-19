@@ -1,0 +1,9 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="navCtrl as vm">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="{{item.class}}" ng-repeat="item in vm.getMenuItems()">
+                <a href="{{item.url}}">{{item.name}}</a>
+            </li>
+        </ul>
+    </div>
+</nav>

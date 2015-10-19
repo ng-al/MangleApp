@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>apMangle</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/mangle.css' />
+
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
+    <script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="/lib/apMangle/Mangle.js"></script>
+    <script src="/lib/apMangle/apTransient.js"></script>
+
+    <script src="/app/MangleApp.js"></script>
+    <script src="/app/router.js"></script>
+    <script src="/nav/navCtrl.js"></script>
+    <script src="/transient/counterService.js"></script>
+    <script src="/transient/counterCtrl1.js"></script>
+    <script src="/transient/counterCtrl2.js"></script>
+    <script src="/transient/counterCtrl3.js"></script>
+    <script src="/transient/counterCtrl4.js"></script>
+  </head>
+  <body ng-app="apMangleApp">
+
+    <div ng-include="'/nav/nav.html'"></div>
+
+    <div ng-view></div>
+  </body>
+</html>

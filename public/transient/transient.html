@@ -1,0 +1,79 @@
+<div class="transient">
+    <p>
+        In AngularJS, the <em>service</em> recipes (constant, value, service, factory)
+        define objects which will be singletons.
+        Controllers that inject those services all receive the same instance of the service.
+        Thus, any state that is saved as a property of the service is shared.
+    </p>
+
+    <p>
+        This mangle <code>apTransient</code> modifies AngularJS so that when you inject a service, you can annotate the
+        injection name to declare whether you wish to consume the service as a singleton or transient.
+        Assume you have a service named <code>counterService</code> (as below).
+        Then when you inject it you can use these forms:
+    <ul>
+        <li>"controllerService": The service will be injected as a singleton.</li>
+        <li>"controllerService as singleton": The service will be injected as a singleton.</li>
+        <li>"controllerService as transient": The service will be injected as a distinct instance of the service.</li>
+    </ul>
+    When you inject a service as a transient, the mangle (in addition to making it transient), will add two properties
+    to the object:
+    <ul>
+        <li>$transientId: A monotonically increasing integer to differentiate between instances.</li>
+        <li>$share: A reference to an object that all transient instances of a service can share.</li>
+    </ul>
+    </p>
+
+    <fieldset>
+        <legend>Singleton counterService</legend>
+
+        <div class="left">
+            <div ng-include="'/transient/counter1.html'" ng-controller="counterCtrl1 as vm"></div>
+            <hr/>
+            <div ng-include="'/transient/counter1.html'" ng-controller="counterCtrl2 as vm"></div>
+        </div>
+        <div class="right">
+            <p>
+                These two controllers are using the counterService by injecting it as <code>"counterService"</code>.
+                Since counterService is a singleton,
+                the value of the <strong>total</strong> property is shared between them.
+            </p>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Transient counterService</legend>
+
+        <div class="left">
+            <div ng-include="'/transient/counter1.html'" ng-controller="counterCtrl3 as vm"></div>
+            <hr/>
+            <div ng-include="'/transient/counter1.html'" ng-controller="counterCtrl4 as vm"></div>
+        </div>
+        <div class="right">
+            <p>
+                These two controllers are using the counterService by injecting it as <code>"counterService as
+                transient"</code>.
+                Since counterService is <strong>not</strong> a singleton, the value of the <strong>total</strong>
+                property is independent.
+            </p>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Transient counterService</legend>
+
+        <div class="left">
+            <div ng-include="'/transient/counter2.html'" ng-controller="counterCtrl3 as vm"></div>
+            <hr/>
+            <div ng-include="'/transient/counter2.html'" ng-controller="counterCtrl4 as vm"></div>
+        </div>
+        <div class="right">
+            <p>
+                When you use transient services, a <code>$share</code> property is defined on the object;
+                this property is shared across all instances of the transient service.
+                The mangle also adds <code>transientId</code> so that you can distinguish between the different
+                instances of a transient service.
+            </p>
+        </div>
+    </fieldset>
+</div>

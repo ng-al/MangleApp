@@ -1,0 +1,22 @@
+{
+  "name": "ngStarter",
+  "version": "0.0.0",
+  "authors": [
+    "alvin-pivowar <alvin.pivowar@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-messages": "^1.4.5",
+    "angular-route": "^1.4.5",
+    "angular": "^1.4.5",
+    "angular-bootstrap": "^0.14.2",
+    "bootstrap": "^3.3.5"
+  }
+}
