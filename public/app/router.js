@@ -9,7 +9,7 @@
             $routeProvider
                 .when("/home", { templateUrl: "/home/home.html" })
                 .when("/transient", { templateUrl: "/transient/transient.html" })
-                .when("/page2", { templateUrl: "/page2.html" })
+                .when("/namespace", { templateUrl: "/namespace/namespace.html" })
                 .when("/page3", { templateUrl: "/page3.html" })
                 .otherwise({ redirectTo: "/home" });
         }]);

@@ -1,5 +1,5 @@
 (function() {
     "use strict";
 
-    angular.module("apMangleApp", ["ngRoute", "ui.bootstrap", "apTransient"]);
+    angular.module("apMangleApp", ["ngRoute", "ui.bootstrap", "apNamespace", "apTransient", "stoogeStudioLib"]);
 })();

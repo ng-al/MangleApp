@@ -28,6 +28,7 @@
             that.patchFactoryRecipe(that.currentModule);
             that.patchFilterRecipe(that.currentModule);
             that.patchServiceRecipe(that.currentModule);
+            that.patchValueRecipe(that.currentModule);
 
             angular.forEach(that.hooks, function (hook) {
                 if (hook.methodType === that.MethodEnum.MODULE)
@@ -168,6 +169,22 @@
             }
         },
 
+        patchValueRecipe: function (module) {
+            var that = this;
+            var ngValueFn = module.module.value;
+
+            module.module.value = function (name, object) {
+                var info = { name: name, object: object };
+                angular.forEach(that.hooks, function (hook) {
+                    if (hook.methodType === that.MethodEnum.VALUE)
+                        info = hook.hookFn(info.name, info.object);
+                });
+
+                ngValueFn(info.name, info.object);
+                return module.module;
+            }
+        },
+
         registerHook: function (methodType, hookFn) {
             var hook = new this.Hook(methodType, hookFn);
             this.hooks.push(hook);
@@ -193,7 +210,8 @@
         FILTER: 5,
         MODULE: 6,
         RUN_BLOCK: 7,
-        SERVICE: 8
+        SERVICE: 8,
+        VALUE: 9
     };
 
     Mangle.prototype.Hook = function (methodType, hookFn) {
@@ -205,7 +223,7 @@
     Mangle.prototype.Module = function (name, module) {
         this.name = name;
         this.module = module;
-    }
+    };
 
 
     initialize();

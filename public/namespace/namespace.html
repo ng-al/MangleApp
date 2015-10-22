@@ -1,0 +1,96 @@
+<div class="namespace">
+    <p>
+        AngularJS does not have the concept of namespaces. When you build an app by combining multiple modules,
+        all of the different recipes are stored into one cache. If two (or more) modules define a recipe using the
+        same name, then the last recipe encountered is the &ldquo;winner&rdquo;, and the objects defined in the previous
+        recipes with the same name no longer exist.
+    </p>
+
+    <p>
+        This mangle modifies Angular by internally rewriting all of the different services (factory, service, and value)
+        names into dot notation: <br />
+        <code>&lt;module-name&gt;.&lt;service-name&gt;</code>
+    </p>
+
+    <p>
+        The five tables below are all driven by a separate controller; each controller explicitly injects the desired
+        service.  For example, the 1930 &ndash; 1932 controller (left-most) injects: <br />
+        <code>"stoogeStudio33.lineup"</code>
+    </p>
+
+    <p>
+        If you open the Javascript console, you will see that the apNamespace mangle emits warning messaging when
+        a recipe definition would normally overwrite a previous recipe.  You will also see warnings during injection
+        if there were more than one recipe defined with that name.
+    </p>
+
+    <table class="table table-bordered table-condensed" ng-controller="studio30Ctrl as vm">
+        <thead><tr><th>1930 &ndash; 1932</th></tr></thead>
+        <tbody>
+            <tr ng-repeat="stooge in vm.stooges">
+                <td>{{stooge.getFullName()}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-condensed" ng-controller="studio33Ctrl as vm">
+        <thead><tr><th>1932 &ndash; 1946</th></tr></thead>
+        <tbody>
+        <tr ng-repeat="stooge in vm.stooges">
+            <td>{{stooge.getFullName()}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-condensed" ng-controller="studio46Ctrl as vm">
+        <thead><tr><th>1946 &ndash; 1955</th></tr></thead>
+        <tbody>
+        <tr ng-repeat="stooge in vm.stooges">
+            <td>{{stooge.getFullName()}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-condensed" ng-controller="studio56Ctrl as vm">
+        <thead><tr><th>1956 &ndash; 1957</th></tr></thead>
+        <tbody>
+        <tr ng-repeat="stooge in vm.stooges">
+            <td>{{stooge.getFullName()}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-condensed" ng-controller="studio58Ctrl as vm">
+        <thead><tr><th>1958 &ndash; 1969</th></tr></thead>
+        <tbody>
+        <tr ng-repeat="stooge in vm.stooges">
+            <td>{{stooge.getFullName()}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="inject-example" ng-controller="studioInjectCtrl as vm">
+        <hr />
+        <p>
+            In the following example, the <code>studioInjectCtrl</code> (using the $injector service) is dynamically
+            resolving the namespaced service name based on the drop down selection.
+        </p>
+        <select ng-model="vm.moduleName" ng-change="vm.onModuleChange()">
+            <option value="stoogeStudio30">1930 &ndash; 1932</option>
+            <option value="stoogeStudio33">1932 &ndash; 1946</option>
+            <option value="stoogeStudio46">1946 &ndash; 1955</option>
+            <option value="stoogeStudio56">1956 &ndash; 1957</option>
+            <option value="stoogeStudio58">1958 &ndash; 1969</option>
+        </select>
+
+        <code>
+            vm.stooges = $injector.get("{{vm.moduleName + '.lineup'}}");
+        </code>
+
+        <br />
+        <label>The lineup for {{vm.moduleName}}:</label>
+        <span ng-repeat="stooge in vm.stooges">
+            {{stooge.getFullName()}}{{$index < 2 ? "," : ""}}{{$index === 1 ? " and " : ""}}
+        </span>
+    </div>
+</div>
