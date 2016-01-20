@@ -1,7 +1,9 @@
+// Copyright (c) Alvin Pivowar 2015, 2016
+
 "use strict";
 
-var DEV_MODE = "dev";
-var PUBLIC_FOLDER = "public";
+var PUBLIC_FOLDER = "./public";
+var INDEX_PAGE = "./public/index.html";
 
 var bodyParser = require("body-parser");
 var express = require("express");
@@ -10,24 +12,23 @@ var less = require("less-middleware");
 var morgan = require("morgan");
 var path = require("path");
 
-process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 var port = process.env.PORT || "3000";
 
 // express
 var app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(less(path.join(__dirname, PUBLIC_FOLDER)));
 app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 app.use(morgan("combined"));
 
 app.get("/", function(req, res){
-    res.render("./public/index.html");
+    res.render(INDEX_PAGE);
 });
 
-app.get("*", function(req, res, next){
-    next();
-});
+//app.get("*", function(req, res, next){
+//    next();
+//});
 
 app.use(function(req, res, next){
     res.status(404);

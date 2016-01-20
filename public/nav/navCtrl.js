@@ -1,3 +1,6 @@
+// Copyright (c) Alvin Pivowar 2015, 2016
+
+
 (function() {
     "use strict";
 
@@ -30,7 +33,6 @@
                 MENU_ITEMS.push(new MenuItem("Mangle!", "#/home"));
                 MENU_ITEMS.push(new MenuItem("Non-Singleton Services", "#/transient"));
                 MENU_ITEMS.push(new MenuItem("Namespaces", "#/namespace"));
-                MENU_ITEMS.push(new MenuItem("Page3", "#/page3"));
             }
         }]);
 

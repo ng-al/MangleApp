@@ -1,8 +1,8 @@
 {
-  "name": "ngStarter",
-  "version": "0.0.0",
+  "name": "MangleApp",
+  "version": "1.0.1",
   "authors": [
-    "alvin-pivowar <alvin.pivowar@gmail.com>"
+    "alvin-pivowar <alvin@ng-al.com>"
   ],
   "main": "index.html",
   "license": "MIT",
