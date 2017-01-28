@@ -30,9 +30,9 @@
 
             function init() {
                 MENU_ITEMS = [];
-                MENU_ITEMS.push(new MenuItem("Mangle!", "#/home"));
-                MENU_ITEMS.push(new MenuItem("Non-Singleton Services", "#/transient"));
-                MENU_ITEMS.push(new MenuItem("Namespaces", "#/namespace"));
+                MENU_ITEMS.push(new MenuItem("Mangle!", "#!/home"));
+                MENU_ITEMS.push(new MenuItem("Non-Singleton Services", "#!/transient"));
+                MENU_ITEMS.push(new MenuItem("Namespaces", "#!/namespace"));
             }
         }]);
 
